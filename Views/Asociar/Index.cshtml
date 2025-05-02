@@ -1,0 +1,39 @@
+@{
+    ViewData["Title"] = "Asociar Mascota";
+}
+
+<h2 class="mb-4">Asociar Mascota a Adoptante</h2>
+
+
+<form asp-action="AsociarMascota" method="post" class="p-4 border rounded bg-light">
+    <div class="mb-3">
+        <label for="adoptanteId" class="form-label">Seleccionar Adoptante</label>
+        <select class="form-select" id="adoptanteId" name="adoptanteId" required>
+            <option value="">-- Seleccione Adoptante --</option>
+            @foreach (var adoptante in ViewBag.Adoptantes)
+            {
+                <option value="@adoptante.Id">@adoptante.Nombre</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="mascotaId" class="form-label">Seleccionar Mascota Disponible</label>
+        <select class="form-select" id="mascotaId" name="mascotaId" required>
+            <option value="">-- Seleccione Mascota --</option>
+            @foreach (var mascota in ViewBag.MascotasDisponibles)
+            {
+                <option value="@mascota.Id">@mascota.Nombre</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Asociar Mascota</button>
+</form>
+
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Mensaje"]
+    </div>
+}
