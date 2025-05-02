@@ -1,0 +1,51 @@
+@model appmascota.Models.Adoptante
+@{
+    ViewData["Title"] = "Registrar Nuevo Adoptante";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6"> 
+        <form asp-action="Registrar" method="post"> 
+
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div> 
+
+            <div class="mb-3"> 
+                <label asp-for="Nombre" class="form-label">Nombre del Adoptante</label> 
+                <input asp-for="Nombre" class="form-control" /> 
+                <span asp-validation-for="Nombre" class="text-danger"></span> 
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Edad" class="form-label"></label>
+                <input asp-for="Edad" type="number" min="18" class="form-control" />
+                <span asp-validation-for="Edad" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Telefono" class="form-label"></label>
+                <input asp-for="Telefono" type="tel" class="form-control" placeholder="" />
+                <span asp-validation-for="Telefono" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Registrar Adoptante</button> 
+            </div>
+        </form>
+
+        @if (TempData["Message"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["Message"]
+            </div>
+        }
+
+    </div> 
+</div> 
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
